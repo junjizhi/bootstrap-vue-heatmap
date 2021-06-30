@@ -16,7 +16,7 @@ export default /*#__PURE__*/{
     */
     numericFields: Array,
     /**
-     * A list of data objects. The keys of each object should be either a numeric or non-numeric field. Order matters.
+     * A list of data objects. The keys of each object should be either a numeric or non-numeric field.
     */
     data: Array,
   },

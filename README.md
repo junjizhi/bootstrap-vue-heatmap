@@ -1,10 +1,18 @@
 # bootstrap-vue-heatmap
 
 ## Introduction
-A simple heatmap component based on [Bootstrap-Vue](https://bootstrap-vue.org/) tables (a.k.a, `b-table`)
+A simple heatmap component based on [Bootstrap-Vue](https://bootstrap-vue.org/) tables (a.k.a, `b-table`).
 
-## Screenshots
-![image](https://user-images.githubusercontent.com/2715151/123905669-c3bcd980-d940-11eb-9a1b-b9ac45d22282.png)
+### Why heatmap as a table?
+This component implements the heatmap as a table because of the flexibility and intuitive interaction. Other libraries implement heatmap more *chart-like*, e.g., [E-charts heatmap](https://echarts.apache.org/examples/en/editor.html?c=heatmap-cartesian), which doesn't have many built-in interactions (e.g., sorting), and we have to code them by hand.
+
+Based on `b-table`, the heatmap comes with flexible options out of the box:
+- Sorting on a column (See the gif below)
+- Multiple non-numeric, non-color-coded columns
+
+![2021-06-30 09 34 01](https://user-images.githubusercontent.com/2715151/123969615-621f5e00-d986-11eb-9e32-a8c3f82749e0.gif)
+
+
 ## Dependencies
 
 
@@ -97,8 +105,11 @@ export default Vue.extend({
 
 
 ## Features
+- [x] Supporting sorting
 - [ ] Support custom color pallette
 - [ ] Support custom cell rendering as slots
+- [ ] Support ordinal data (e.g., `Low`, `Medium`, `High`)
+  - Currently you have to convert them into numeric data and pass in in the `data` props
 
 ## Component Reference
 ### Props
@@ -107,7 +118,7 @@ export default Vue.extend({
 | -------------------- | ------- | --------------------------------------------------------------------------------------------------------------- |
 | `non-numeric-fields` | `Array` | A list of non-numeric fields (strings). These columns will not be color-coded.                                  |
 | `numeric-fields`     | `Array` | A list of numeric fields (strings). These columns will be color-coded.                                          |
-| `data`               | `Array` | A list of data objects. The keys of each object should be either a numeric or non-numeric field. Order matters. |
+| `data`               | `Array` | A list of data objects. The keys of each object should be either a numeric or non-numeric field.|
 
 ## Development
 
