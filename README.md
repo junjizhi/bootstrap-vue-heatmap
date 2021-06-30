@@ -3,6 +3,9 @@
 ## Introduction
 A simple heatmap component based on [Bootstrap-Vue](https://bootstrap-vue.org/) tables (a.k.a, `b-table`).
 
+### Demo
+[CodeSandbox](https://codesandbox.io/s/nameless-leftpad-1pu2x)
+
 ### Why heatmap as a table?
 This component implements the heatmap as a table because of the flexibility and intuitive interaction. Other libraries implement heatmap more *chart-like*, e.g., [E-charts heatmap](https://echarts.apache.org/examples/en/editor.html?c=heatmap-cartesian), which doesn't have many built-in interactions (e.g., sorting), and we have to code them by hand.
 
