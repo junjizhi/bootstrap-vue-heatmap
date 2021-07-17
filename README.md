@@ -109,6 +109,7 @@ export default Vue.extend({
 
 ## Features
 - [x] Supporting sorting
+- [x] Support compact mode
 - [ ] Support custom color pallette
 - [ ] Support custom cell rendering as slots
 - [ ] Support ordinal data (e.g., `Low`, `Medium`, `High`)
@@ -117,11 +118,12 @@ export default Vue.extend({
 ## Component Reference
 ### Props
 
-| Name                 | Type    | Description                                                                                                     |
-| -------------------- | ------- | --------------------------------------------------------------------------------------------------------------- |
-| `non-numeric-fields` | `Array` | A list of non-numeric fields (strings). These columns will not be color-coded.                                  |
-| `numeric-fields`     | `Array` | A list of numeric fields (strings). These columns will be color-coded.                                          |
-| `data`               | `Array` | A list of data objects. The keys of each object should be either a numeric or non-numeric field.|
+| Name                 | Type      | Description                                                                                                                        |
+| -------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `non-numeric-fields` | `Array`   | A list of non-numeric fields (strings). These columns will not be color-coded.                                                     |
+| `numeric-fields`     | `Array`   | A list of numeric fields (strings). These columns will be color-coded.                                                             |
+| `data`               | `Array`   | A list of data objects. The keys of each object should be either a numeric or non-numeric field.                                   |
+| `compact`            | `Boolean` | A flag to indicate if the heatmap is rendering in compact mode. It allows the heatmap to show more data with less horizontal span. |
 
 ## Development
 

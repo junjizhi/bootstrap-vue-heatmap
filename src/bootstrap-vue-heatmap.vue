@@ -19,6 +19,10 @@ export default /*#__PURE__*/{
      * A list of data objects. The keys of each object should be either a numeric or non-numeric field.
     */
     data: Array,
+    /**
+     * A flag to indicate if the heatmap is rendering in compact mode. It allows the heatmap to show more data with less horizontal span.
+    */
+    compact: Boolean
   },
   computed: {
     fields: function() {
@@ -72,7 +76,16 @@ export default /*#__PURE__*/{
       responsive
       :fields="fields"
       :items="items"
-    />
+    >
+      <template #head()="headData">
+        <span v-if="nonNumericFields.includes(headData.label) || !compact">{{ headData.label }}</span>
+        <b-icon
+          v-if="!nonNumericFields.includes(headData.label) && !!compact"
+          icon="clock"
+          :title="headData.label"
+        />
+      </template>
+    </b-table>
   </div>
 </template>
 

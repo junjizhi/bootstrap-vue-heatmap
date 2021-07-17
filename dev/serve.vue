@@ -1,8 +1,9 @@
 <script>
 import Vue from 'vue';
 import BootstrapVueHeatmap from '@/bootstrap-vue-heatmap.vue';
-import { BCard } from 'bootstrap-vue'
+import { BCard, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.component('b-card', BCard)
+Vue.use(BootstrapVueIcons)
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -58,6 +59,7 @@ export default Vue.extend({
         :non-numeric-fields="nonNumericFields"
         :numeric-fields="numericFields"
         :data="data"
+        :compact="false"
       />
     </b-card>
   </div>
