@@ -1,8 +1,11 @@
 <script>
 import Vue from 'vue'
 import { BTable } from 'bootstrap-vue'
+import { BTooltip, BootstrapVueIcons} from 'bootstrap-vue'
 
 Vue.component('b-table', BTable)
+Vue.component('b-tooltip', BTooltip)
+Vue.use(BootstrapVueIcons)
 
 export default /*#__PURE__*/{
   name: "BootstrapVueHeatmap",
@@ -41,19 +44,27 @@ export default /*#__PURE__*/{
 
       const allValues = data.map(item => {
         return this.numericFields.map(c => item[c])
-      }).flat()
+      }).flat().filter(n => !isNaN(n))
 
-      const globalMax = Math.max(...allValues);
-      const globalMin = Math.min(...allValues);
-      const scale = globalMax - globalMin;
+      let globalMin = 0
+      let globalMax = 0
+      let scale = 0
+
+      if (allValues.length > 0) {
+        globalMax = Math.max(...allValues);
+        globalMin = Math.min(...allValues);
+        scale = globalMax - globalMin;
+      }
 
       return data.map(item => {
         const variants = {};
         this.numericFields.forEach(c => {
           const value = item[c]
-          const offset = value - globalMin;
-          const heat = Math.floor((offset / scale) * HEAT_MAX)
-          variants[c] = 'heat-' + heat
+          if(!isNaN(value) && scale != 0) {
+            const offset = value - globalMin;
+            const heat = Math.floor((offset / scale) * HEAT_MAX)
+            variants[c] = 'heat-' + heat
+          }
         })
 
         return {
@@ -84,6 +95,16 @@ export default /*#__PURE__*/{
           icon="clock"
           :title="headData.label"
         />
+      </template>
+
+      <template #cell()="cellData">
+        <span v-if="nonNumericFields.includes(cellData.field.key) || !compact">{{ cellData.value }}</span>
+        <div
+          v-if="numericFields.includes(cellData.field.key) && compact"
+          :title="cellData.value"
+        >
+&nbsp;
+        </div>
       </template>
     </b-table>
   </div>
