@@ -25,13 +25,20 @@ export default /*#__PURE__*/{
     /**
      * A flag to indicate if the heatmap is rendering in compact mode. It allows the heatmap to show more data with less horizontal span.
     */
-    compact: Boolean
+    compact: Boolean,
+    /**
+     * A list of fields that are stick to the left of the heatmap when the heatmap has a horizontal scrollbar.
+    */
+    stickyFields: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     fields: function() {
       return [
-        ...this.nonNumericFields.map(c => ({key: c, label: c, sortable: true})),
-        ...this.numericFields.map(c => ({key: c, label: c, sortable: true})),
+        ...this.columnConfigs(this.nonNumericFields, this.stickyFields),
+        ...this.columnConfigs(this.numericFields, this.stickyFields)
       ]
     },
     items: function() {
@@ -39,6 +46,9 @@ export default /*#__PURE__*/{
     }
   },
   methods: {
+    columnConfigs (fields, stickyFields) {
+      return fields.map(function (c) { return { key: c, label: c, sortable: true, stickyColumn: stickyFields.includes(c) } })
+    },
     addCellVariants(data) {
       const HEAT_MAX = 8
 
