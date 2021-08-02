@@ -33,6 +33,13 @@ export default /*#__PURE__*/{
       type: Array,
       default: () => [],
     },
+    /**
+     * Formats a the numermic cells using Javascript fixed-point notation. If passed in as a number, it denotes the number of decimal places to display. Defaults to 2 decimal places
+    */
+    fixedDecimalPlaces: {
+      type: [Number, Boolean],
+      default: () => 2,
+    },
   },
   computed: {
     fields: function() {
@@ -82,6 +89,26 @@ export default /*#__PURE__*/{
           _cellVariants: variants
         }
       })
+    },
+    formatCellValue(item) {
+      if (typeof this.fixedDecimalPlaces === 'boolean') {
+        if (this.fixedDecimalPlaces) {
+          return this.maybeFormat(item.value, 2)
+        } else {
+          return item.value
+        }
+      }
+      if (Number.isInteger(this.fixedDecimalPlaces)) {
+        return this.maybeFormat(item.value, this.fixedDecimalPlaces)
+      }
+      return item.value
+    },
+    maybeFormat(value, n) {
+      try {
+        return value.toFixed(n)
+      } catch(Exception) {
+        return value
+      }
     }
   }
 }
@@ -108,7 +135,7 @@ export default /*#__PURE__*/{
       </template>
 
       <template #cell()="cellData">
-        <span v-if="nonNumericFields.includes(cellData.field.key) || !compact">{{ cellData.value }}</span>
+        <span v-if="nonNumericFields.includes(cellData.field.key) || !compact">{{ formatCellValue(cellData) }}</span>
         <div
           v-if="numericFields.includes(cellData.field.key) && compact"
           :title="cellData.value"

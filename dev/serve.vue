@@ -60,7 +60,7 @@ export default Vue.extend({
       data: Cities.map(city => ({
         City: city,
         '2021-06-27 8:00': Math.floor(Math.random() * 9),
-        '2021-06-27 8:10': Math.floor(Math.random() * 9),
+        '2021-06-27 8:10': 1.234567,
         '2021-06-27 8:20': Math.floor(Math.random() * 9),
         '2021-06-27 8:30': Math.floor(Math.random() * 9),
         '2021-06-27 8:40': Math.floor(Math.random() * 9),

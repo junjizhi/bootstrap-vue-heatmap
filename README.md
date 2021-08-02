@@ -124,7 +124,8 @@ export default Vue.extend({
 | `numeric-fields`     | `Array`   | A list of numeric fields (strings). These columns will be color-coded.                                                             |
 | `data`               | `Array`   | A list of data objects. The keys of each object should be either a numeric or non-numeric field.                                   |
 | `compact`            | `Boolean` | A flag to indicate if the heatmap is rendering in compact mode. It allows the heatmap to show more data with less horizontal span. |
-| `sticky-fields`      | `Array`   | A list of fields that are stick to the left of the heatmap when the heatmap has a horizontal scrollbar.                            | `() => []` |
+| `sticky-fields`      | `Array`   | A list of fields that are stick to the left of the heatmap when the heatmap has a horizontal scrollbar.
+| `fixed-decimal-places` | `Number` &#124; `Boolean` | Formats a the numermic cells using Javascript fixed-point notation. If passed in as a number, it denotes the number of decimal places to display. | `() => 2`  |
 
 ## Development
 
